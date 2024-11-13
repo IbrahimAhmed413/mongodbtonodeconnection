@@ -1,15 +1,9 @@
 const express = require("express");
 const app = express();
-const mongoose = require("mongoose");
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 const User = require('./models/user')
-mongoose
-  .connect(
-    "mongodb+srv://ibrahim:ibrahim@cluster0.h6h9g.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
-  .then(() => console.log("Connected to MongoDB"))
-  .catch((err) => console.error("MongoDB connection error:", err));
-
+require('./Connections/databaseconnection');
 
 app.post('/users/create', async (req, res) => {
     try {
